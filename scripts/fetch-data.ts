@@ -92,7 +92,7 @@ const build = (rows: Row[]): string => {
   return [
     `export const OPERATORS: readonly (readonly [inn: string, name: string])[] = ${JSON.stringify(operators)};`,
     `export const PLACES: readonly string[] = ${JSON.stringify(places)};`,
-    `export const RANGES = ${JSON.stringify(ranges)};`,
+    `export const RANGES: string = ${JSON.stringify(ranges)};`,
   ].join('\n');
 };
 
@@ -105,6 +105,6 @@ for (const dataset of DATASETS) {
     console.log(`${dataset.file}: up to date`);
     continue;
   }
-  writeFileSync(dataset.file, `export const UPDATED = '${new Date().toISOString().slice(0, 10)}';\n${body}\n`);
+  writeFileSync(dataset.file, `export const UPDATED: string = '${new Date().toISOString().slice(0, 10)}';\n${body}\n`);
   console.log(`${dataset.file}: ${rows.length} rows written`);
 }
