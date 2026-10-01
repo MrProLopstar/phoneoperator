@@ -1,0 +1,63 @@
+{
+  "name": "phoneoperator",
+  "version": "0.1.0",
+  "description": "Operator and region of a Russian phone number, offline, from the official numbering registry",
+  "keywords": [
+    "phone",
+    "russia",
+    "mobile-operator",
+    "carrier",
+    "region",
+    "rossvyaz",
+    "def-code",
+    "оператор",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "MrProLopstar",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./full": {
+      "types": "./dist/full.d.ts",
+      "import": "./dist/full.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "README.ru.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrProLopstar/phoneoperator.git"
+  },
+  "homepage": "https://github.com/MrProLopstar/phoneoperator#readme",
+  "bugs": {
+    "url": "https://github.com/MrProLopstar/phoneoperator/issues"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "data": "node scripts/fetch-data.ts",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@mrprolopstar/phoneoperator",
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.ts",
+    "./full": "./src/full.ts"
+  },
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "README.md",
+      "LICENSE",
+      "CHANGELOG.md",
+      "README.ru.md"
+    ]
+  }
+}

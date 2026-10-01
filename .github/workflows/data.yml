@@ -1,0 +1,53 @@
+name: Registry release
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/data/**']
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: startsWith(github.event.head_commit.message, 'Update numbering registry')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - name: Bump, tag and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          date="$(node -p "require('node:fs').readFileSync('src/data/mobile.ts', 'utf8').match(/UPDATED = '([^']+)'/)[1]")"
+          version="$(node -p "const [major, minor] = require('./package.json').version.split('.').map(Number); [major, minor + 1, 0].join('.')")"
+          npm version "$version" --no-git-tag-version
+          node -e "
+            const fs = require('node:fs');
+            const jsr = JSON.parse(fs.readFileSync('jsr.json', 'utf8'));
+            jsr.version = process.argv[1];
+            fs.writeFileSync('jsr.json', JSON.stringify(jsr, null, 2) + '\n');
+            const log = fs.readFileSync('CHANGELOG.md', 'utf8');
+            const at = log.indexOf('\n## ');
+            const entry = '\n## ' + process.argv[1] + '\n\n- Numbering registry as of ' + process.argv[2] + '\n';
+            fs.writeFileSync('CHANGELOG.md', log.slice(0, at) + entry + log.slice(at));
+          " "$version" "$date"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Release $version"
+          git push origin HEAD:main
+          git tag "v$version"
+          git push origin "v$version"
+          gh workflow run publish.yml --ref main -f tag="v$version"
