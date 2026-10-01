@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/phoneoperator?color=0e7c66)](https://www.npmjs.com/package/phoneoperator)
 [![JSR](https://jsr.io/badges/@mrprolopstar/phoneoperator)](https://jsr.io/@mrprolopstar/phoneoperator)
 
-[English version](README.md)
+[English version](README.md) · [Песочница](https://mrprolopstar.github.io/phoneoperator/)
 
 Оператор и регион российского номера телефона офлайн. Данные взяты из официального реестра нумерации Минцифры, лежат внутри пакета и обновляются каждую неделю. Без зависимостей и сетевых запросов, работает в Node, Deno, Bun и браузере.
 

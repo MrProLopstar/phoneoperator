@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/phoneoperator?color=0e7c66)](https://www.npmjs.com/package/phoneoperator)
 [![JSR](https://jsr.io/badges/@mrprolopstar/phoneoperator)](https://jsr.io/@mrprolopstar/phoneoperator)
 
-[Русская версия](README.ru.md)
+[Русская версия](README.ru.md) · [Playground](https://mrprolopstar.github.io/phoneoperator/)
 
 Operator and region of a Russian phone number, offline. The data is the official numbering registry of the Ministry of Digital Development, bundled into the package and refreshed every week. No dependencies, no network requests, works in Node, Deno, Bun and browsers.
 

@@ -3,3 +3,4 @@ dist
 coverage
 .registry
 update.log
+site/lib
