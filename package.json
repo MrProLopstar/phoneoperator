@@ -52,7 +52,7 @@
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "data": "node scripts/fetch-data.ts",
+    "data": "node --use-system-ca scripts/fetch-data.ts",
     "prepare": "npm run build"
   },
   "devDependencies": {
