@@ -1,7 +1,7 @@
 # phoneoperator
 
-[![npm](https://img.shields.io/npm/v/phoneoperator?color=0e7c66)](https://www.npmjs.com/package/phoneoperator)
-[![JSR](https://jsr.io/badges/@mrprolopstar/phoneoperator)](https://jsr.io/@mrprolopstar/phoneoperator)
+[![npm](https://img.shields.io/npm/v/phoneoperator?color=0e7c66&cacheSeconds=3600)](https://www.npmjs.com/package/phoneoperator)
+[![JSR](https://jsr.io/badges/@mrprolopstar/phoneoperator?v=1)](https://jsr.io/@mrprolopstar/phoneoperator)
 
 [Русская версия](README.ru.md) · [Playground](https://mrprolopstar.github.io/phoneoperator/)
 
