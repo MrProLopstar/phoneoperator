@@ -11,6 +11,17 @@
 npm install phoneoperator
 ```
 
+Без сборщика пакет можно подключить в браузере прямо с jsDelivr: он сам собирает минифицированный ES-модуль из npm-пакета:
+
+```html
+<script type="module">
+  import { lookup } from 'https://cdn.jsdelivr.net/npm/phoneoperator@0/+esm';
+  console.log(lookup('+7 916 123-45-67'));
+</script>
+```
+
+Для `phoneoperator/full` используйте `https://cdn.jsdelivr.net/npm/phoneoperator@0/dist/full.js/+esm`. `@0` берёт последний релиз 0.x; в продакшене лучше указать точную версию, например `@0.1.0`.
+
 ```ts
 import { lookup } from 'phoneoperator';
 

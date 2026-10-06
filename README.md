@@ -11,6 +11,17 @@ Operator and region of a Russian phone number, offline. The data is the official
 npm install phoneoperator
 ```
 
+No bundler? Load it in the browser straight from jsDelivr, which builds a minified ES module from the npm package:
+
+```html
+<script type="module">
+  import { lookup } from 'https://cdn.jsdelivr.net/npm/phoneoperator@0/+esm';
+  console.log(lookup('+7 916 123-45-67'));
+</script>
+```
+
+For `phoneoperator/full` use `https://cdn.jsdelivr.net/npm/phoneoperator@0/dist/full.js/+esm`. `@0` follows the latest 0.x release; pin an exact version such as `@0.1.0` in production.
+
 ```ts
 import { lookup } from 'phoneoperator';
 
