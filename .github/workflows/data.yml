@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      actions: write
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,11 +28,10 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-      - name: Bump, tag and publish
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Bump and tag
+        id: release
         run: |
-          date="$(node -p "require('node:fs').readFileSync('src/data/mobile.ts', 'utf8').match(/UPDATED = '([^']+)'/)[1]")"
+          date="$(node -p "require('node:fs').readFileSync('src/data/mobile.ts', 'utf8').match(/UPDATED: string = '([^']+)'/)[1]")"
           version="$(node -p "const [major, minor] = require('./package.json').version.split('.').map(Number); [major, minor + 1, 0].join('.')")"
           npm version "$version" --no-git-tag-version
           node -e "
@@ -50,4 +50,15 @@ jobs:
           git push origin HEAD:main
           git tag "v$version"
           git push origin "v$version"
-          gh workflow run publish.yml --ref main -f tag="v$version"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: release
+    if: needs.release.outputs.tag != ''
+    uses: ./.github/workflows/publish.yml
+    with:
+      tag: ${{ needs.release.outputs.tag }}
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
