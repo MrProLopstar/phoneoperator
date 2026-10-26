@@ -1,6 +1,6 @@
 {
   "name": "phoneoperator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Operator and region of a Russian phone number, offline, from the official numbering registry",
   "keywords": [
     "phone",
