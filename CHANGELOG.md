@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Numbering registry as of 2026-11-16
+
 ## 0.2.0
 
 - Numbering registry as of 2026-10-26
